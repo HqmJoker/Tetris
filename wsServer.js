@@ -3,7 +3,9 @@ var io = require("socket.io")(app);
 
 var PORT = 3003;
 
-app.listen(PORT);
+app.listen(PORT,function(){
+    console.log("server is listening on port:" + PORT);
+});
 
 var clientCount = 0;
 //客户端匹配
@@ -60,5 +62,10 @@ io.on("connection", function(socket){
     });
 });
 
-console.log("server is listening on port:" + PORT);
+//监听get,默认路由主页
+app.get("/",(req, res)=>{
+    res.sendFile('index.html');
+});
+
+
 
